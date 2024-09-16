@@ -11,15 +11,14 @@
 
 1. Клонируйте репозиторий
     ```bash
-   git clone 
+   git clone https://github.com/Irina-pr98/Bulls-and-cows-game.git
    ```
 
 2. Создайте виртуальное окружение
     ```bash
    python -m venv venv
    source venv/bin/activate
-   # На Windows используйте
-   `venv\Scripts\activate`
+   # На Windows используйте `venv\Scripts\activate`
     ```
    
 3. Установите необходимые пакеты
