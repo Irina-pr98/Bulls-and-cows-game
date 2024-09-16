@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Быки и Коровы</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Быки и Коровы</h1>
+        <p>Выберите версию игры:</p>
+        <ul class="menu">
+            <li><a href="{{ url_for('user_guesses', difficulty='easy') }}" class="easy">Вы угадываете число компьютера (Легкий)</a></li>
+            <li><a href="{{ url_for('user_guesses', difficulty='medium') }}" class="medium">Вы угадываете число компьютера (Средний)</a></li>
+            <li><a href="{{ url_for('user_guesses', difficulty='hard') }}" class="hard">Вы угадываете число компьютера (Сложный)</a></li>
+            <li><a href="{{ url_for('computer_guesses') }}" class="computer">Компьютер угадывает ваше число</a></li>
+            <li><a href="{{ url_for('rules') }}" class="rules">Правила игры</a></li>
+        </ul>
+    </div>
+</body>
+</html>

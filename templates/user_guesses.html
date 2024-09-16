@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вы угадываете число компьютера</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Вы угадываете число компьютера</h1>
+        {% if difficulty == 'easy' %}
+            <p class="easy">Правила игры (Легкий уровень): Угадайте 3-значное число без повторяющихся цифр.</p>
+        {% elif difficulty == 'medium' %}
+            <p class="medium">Правила игры (Средний уровень): Угадайте 4-значное число без повторяющихся цифр.</p>
+        {% elif difficulty == 'hard' %}
+            <p class="hard">Правила игры (Сложный уровень): Угадайте 5-значное число без повторяющихся цифр.</p>
+        {% endif %}
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+            <p class="success">Поздравляем! Вы угадали число {{ secret_number }} за {{ attempts_count }} попыток!</p>
+        {% else %}
+            <form method="post">
+                <input type="hidden" name="secret_number" value="{{ secret_number }}">
+                <input type="hidden" name="attempts" value="{{ attempts }}">
+                <label for="guess">Введите ваше предположение:</label>
+                <input type="text" id="guess" name="guess" required>
+                <button type="submit">Отправить</button>
+            </form>
+            <ol>
+                {% for attempt in attempts %}
+                    <li>{{ attempt[0] }} - Быки: {{ attempt[1] }}, Коровы: {{ attempt[2] }}</li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Вернуться на главную</a>
+    </div>
+</body>
+</html>

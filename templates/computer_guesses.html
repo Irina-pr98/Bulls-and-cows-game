@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Компьютер угадывает ваше число</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Компьютер угадывает ваше число</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+            <p class="success">Компьютер угадал ваше число!</p>
+        {% else %}
+            <p>Компьютер предполагает: {{ guess }}</p>
+            <form method="post">
+                <input type="hidden" name="guess" value="{{ guess }}">
+                <input type="hidden" name="possible_numbers" value="{{ possible_numbers }}">
+                <input type="hidden" name="attempts" value="{{ attempts }}">
+                <label for="bulls">Введите количество быков:</label>
+                <input type="number" id="bulls" name="bulls" min="0" max="4" required>
+                <label for="cows">Введите количество коров:</label>
+                <input type="number" id="cows" name="cows" min="0" max="4" required>
+                <button type="submit">Отправить</button>
+            </form>
+            <ul>
+                {% for attempt in attempts %}
+                    <li>{{ attempt[0] }} - Быки: {{ attempt[1] }}, Коровы: {{ attempt[2] }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Вернуться на главную</a>
+    </div>
+</body>
+</html>
